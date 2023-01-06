@@ -181,7 +181,3 @@ console.log(pharmacie);
 
 
 console.log(cimetiere);
-
-
-
-
