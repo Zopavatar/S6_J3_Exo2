@@ -64,6 +64,7 @@ class Doc {
 
     patientIn(patient){
         console.log(`Bonjour, Mr ${patient.nom}, vous pouvez entrer`);
+        console.log(patient);
 
         this.cabinet.push(patient);
         this.diagnostique(patient);
@@ -117,7 +118,7 @@ let docteur = new Doc("Roger",["chat"],0);
 
 
 function miaou() {
-    console.log('Miaou');
+    console.log("Je suis le chat du docteur et je fais Miaou");
 }
 
 setInterval(miaou, 2000);
