@@ -39,6 +39,36 @@ let salleAttente = [marcus,optimus,sangoku,darthVader,semiColon];
 let pharma = [];
 let cimetiere = [];
 
+
+class Pharma {
+    constructor(personnes,caisse){
+        this.personnes = personnes;
+        this.caisse = caisse;
+    }
+
+    achat(patient){
+       if (patient.argent < patient.traitement[0].prix){
+  
+                patient.takeCare();
+
+                console.log(patient);
+                
+        } else {
+                patient.argent -= patient.traitement[0].prix;
+                pharmacie.caisse += patient.traitement[0].prix;
+                patient.poche.push(patient.traitement[0]);
+
+                patient.takeCare();
+
+                console.log(patient);   
+        }
+    }
+}
+
+let pharmacie = new Pharma([],0);
+
+
+
 class Tarifs {
     constructor(nom,prix){
         this.nom = nom;
@@ -61,12 +91,12 @@ class Doc {
         this.argent = argent;
     }
 
-
     patientIn(patient){
         console.log(`Bonjour, Mr ${patient.nom}, vous pouvez entrer`);
         console.log(patient);
 
         this.cabinet.push(patient);
+
         this.diagnostique(patient);
     }
 
@@ -111,6 +141,8 @@ class Doc {
         this.cabinet.splice(this.cabinet.indexOf(patient));
 
         patient.goTo(pharma);
+
+        pharmacie.personnes = pharma;
     }
 }
 
@@ -124,48 +156,30 @@ function miaou() {
 setInterval(miaou, 2000);
 
 
+console.log(salleAttente);
+
 for (i = 0; i < salleAttente.length; i++){
 
     console.log(docteur);
 
     docteur.patientIn(salleAttente[i]);
-    console.log(docteur);
 
+    console.log(docteur);
+    
     docteur.patientOut(salleAttente[i]);
+    
     console.log(salleAttente[i]);
 }
 
-
-class Pharma {
-    constructor(personnes,caisse){
-        this.personnes = personnes;
-        this.caisse = caisse;
-    }
-
-    achat(patient){
-       if (patient.argent < patient.traitement[0].prix){
-  
-                patient.takeCare();
-
-                console.log(patient);
-                
-        } else {
-                patient.argent -= patient.traitement[0].prix;
-                pharmacie.caisse += patient.traitement[0].prix;
-                patient.poche.push(patient.traitement[0]);
-
-                patient.takeCare();
-
-                console.log(patient);   
-        }
-    }
-}
-
-let pharmacie = new Pharma([],0);
-console.log(pharma);
+console.log(salleAttente = []);
+console.log(pharmacie);
 
 pharma.forEach(element => pharmacie.achat(element));
+
+pharmacie.personnes = []
 console.log(pharmacie);
+
+
 console.log(cimetiere);
 
 
